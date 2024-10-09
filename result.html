@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Check</title>
+</head>
+<body>
+    <h2>Enter Your Registration Number</h2>
+    
+    <input type="text" id="regNumber" placeholder="Enter Registration Number" />
+    <button onclick="submitForm()">Submit</button>
+
+    <script>
+        function submitForm() {
+            // Get the registration number from the input box
+            var regNumber = document.getElementById('regNumber').value.trim();
+
+            // Ensure the registration number is not empty
+            if (regNumber !== "") {
+                // Define the base URL and replace the registration number
+                var baseUrl = "http://result.nu.ac.bd/results_latest/result_show.php?reg_no=18220092332&exm_code=BachelorDegree(Honours)3rdYear&sub_code=2&exm_year=2022";
+                
+                // Replace the old registration number (18220092332) with the entered one
+                var finalUrl = baseUrl.replace("18220092332", regNumber);
+
+                // Redirect to the updated URL
+                window.location.href = finalUrl;
+            } else {
+                alert("Please enter a valid registration number");
+            }
+        }
+    </script>
+</body>
+</html>
