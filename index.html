@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,6 +26,97 @@
 
                 // Redirect to the updated URL
                 window.location.href = finalUrl;
+            } else {
+                alert("Please enter a valid registration number");
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+<!-- NEW CODE HERE --> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Check</title>
+    <style>
+        /* Simple UI design */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 50%;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-field {
+            margin-bottom: 20px;
+        }
+        .input-field input[type="text"] {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+        .input-field button[type="button"] {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-field button[type="button"]:hover {
+            background-color: #3e8e41;
+        }
+        .result-container {
+            margin-top: 20px;
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Your Registration Number</h2>
+        <p>It's work only BSS 3rd Year</p>
+        <div class="input-field">
+            <input type="text" id="regNumber" placeholder="Enter Registration Number" />
+            <button type="button" onclick="submitForm()">Submit</button>
+        </div>
+        <div class="result-container">
+            <iframe id="result-iframe" src="" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Get the registration number from the input box
+            var regNumber = document.getElementById('regNumber').value.trim();
+
+            // Ensure the registration number is not empty
+            if (regNumber !== "") {
+                // Define the base URL
+                var baseUrl = "http://result.nu.ac.bd/results_latest/result_show.php";
+
+                // Create a new URL with the registration number
+                var finalUrl = `${baseUrl}?reg_no=${encodeURIComponent(regNumber)}&exm_code=BachelorDegree(Honours)3rdYear&sub_code=2&exm_year=2022`;
+
+                // Set the iframe src to the final URL
+                document.getElementById('result-iframe').src = finalUrl;
             } else {
                 alert("Please enter a valid registration number");
             }
