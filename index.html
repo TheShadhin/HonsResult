@@ -43,16 +43,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result Check</title>
     <style>
-        /* Simple UI design */
+        /* Modern UI design */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f7f7f7;
         }
         .container {
-            width: 90%; /* Adjusted width for mobile responsiveness */
+            max-width: 400px;
             margin: 40px auto;
-            background-color: #fff;
             padding: 20px;
+            background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -66,6 +66,7 @@
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
+            border-radius: 5px;
         }
         .input-field button[type="button"] {
             width: 100%;
@@ -81,45 +82,29 @@
         .input-field button[type="button"]:hover {
             background-color: #3e8e41;
         }
-        .result-container {
-            margin-top: 20px;
-            width: 100%;
-            height: 500px;
-            border: 1px solid #ddd;
-            overflow: auto; /* Add this for mobile responsiveness */
-            -webkit-overflow-scrolling: touch; /* Add this for mobile responsiveness */
-        }
-        iframe#result-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block; /* Add this for mobile responsiveness */
-            margin: 0 auto; /* Add this for mobile responsiveness */
-        }
-        /* Add media query for mobile responsiveness */
+        /* Mobile responsiveness */
         @media only screen and (max-width: 768px) {
             .container {
                 width: 100%;
                 margin: 20px auto;
+                padding: 15px;
             }
             .input-field input[type="text"] {
                 height: 30px;
-            }
-            .result-container {
-                height: 300px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Enter Your Registration Number</h2>
+        <h2>BA & BSS Result Checker</h2> <p>Just type your BA or BSS Register Number</p>
         <div class="input-field">
-            <input type="text" id="regNumber" placeholder="Enter Registration Number" />
-            <button type="button" onclick="submitForm()">Submit</button>
+            <input type="text" id="regNumber" placeholder="Enter BSS Registration Number" />
+            <button type="button" onclick="submitForm()">BSS Result</button>
         </div>
-        <div class="result-container">
-            <iframe id="result-iframe" src="" frameborder="0" width="100%" height="100%"></iframe>
+        <div class="input-field">
+            <input type="text" id="baRegNumber" placeholder="Enter BA Registration Number" />
+            <button type="button" onclick="submitBAResultForm()">BA Result</button>
         </div>
     </div>
 
@@ -136,10 +121,29 @@
                 // Create a new URL with the registration number
                 var finalUrl = `${baseUrl}?reg_no=${encodeURIComponent(regNumber)}&exm_code=BachelorDegree(Honours)3rdYear&sub_code=2&exm_year=2022`;
 
-                // Set the iframe src to the final URL
-                document.getElementById('result-iframe').src = finalUrl;
+                // Open the result in a new tab
+                window.open(finalUrl, '_blank');
             } else {
                 alert("Please enter a valid registration number");
+            }
+        }
+
+        function submitBAResultForm() {
+            // Get the BA registration number from the input box
+            var baRegNumber = document.getElementById('baRegNumber').value.trim();
+
+            // Ensure the BA registration number is not empty
+            if (baRegNumber !== "") {
+                // Define the base URL
+                var baseUrl = "http://result.nu.ac.bd/results_latest/result_show.php";
+
+                // Create a new URL with the BA registration number
+                var finalUrl = `${baseUrl}?reg_no=${encodeURIComponent(baRegNumber)}&exm_code=BachelorDegree(Honours)3rdYear&sub_code=1&exm_year=2022`;
+
+                // Open the BA result in a new tab
+                window.open(finalUrl, '_blank');
+            } else {
+                alert("Please enter a valid BA registration number");
             }
         }
     </script>
